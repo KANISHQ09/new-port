@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Splash from "./components/nurui/splash-cursor.jsx";
 import Home from "./pages/Home";
 import ProjectsPage from "./pages/Project.jsx";
-import AboutMe from "./pages/about.jsx";
+import AboutMe from "./pages/AboutMe.jsx";
 import Testimonial from "./pages/Testimonial.jsx";
 import Contact from "./pages/Contact.jsx";
 import Foot from "./components/footer.jsx";
