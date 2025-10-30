@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useScroll } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import Card from "../components/Card.jsx";
-import LocomotiveScroll from 'locomotive-scroll';
 
 const projects = [
   {
@@ -40,15 +39,19 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
-    const locomotiveScroll = new LocomotiveScroll();
   const containerRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+    });
 
     function raf(time) {
       lenis.raf(time);
@@ -61,7 +64,11 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <main ref={containerRef} id="work" className="relative bg-black flex flex-col items-center min-h-screen">
+    <main
+      ref={containerRef}
+      id="work"
+      className="relative bg-black flex flex-col items-center min-h-screen"
+    >
       {/* Fixed heading */}
       <h1 className="bbh-sans-bartle-regular text-5xl font-bold text-white z-50 m-20">
         MY WORK
@@ -83,6 +90,7 @@ export default function ProjectsPage() {
           );
         })}
       </div>
+
       <div id="about"></div>
     </main>
   );
